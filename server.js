@@ -14,8 +14,19 @@ var store = fortune({
 
 store.defineType('subject', {
     name:       {type: String},
-    credit:    {type: Number},
+    credit:     {type: Number},
+    user:       {link: 'user', inverse: 'subjects'},
 });
+
+store.defineType('user', {
+    firstName:  {type: String},
+    lastName:   {type: String},
+    neptun:      {type: String},
+    password:   {type: String},
+    online:     {type: Boolean},
+    subjects:   {link: 'subject', inverse: 'user', isArray: true},
+});
+
 
 var server = express();
 
